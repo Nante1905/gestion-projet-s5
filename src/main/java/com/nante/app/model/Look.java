@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Look extends GenericModel {
@@ -17,7 +17,7 @@ public class Look extends GenericModel {
     String nom;
     String ref;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "look_matiere", joinColumns = @JoinColumn(name = "id_look"), inverseJoinColumns = @JoinColumn(name = "id_matiere"))
     List<Matiere> matieres;
 
