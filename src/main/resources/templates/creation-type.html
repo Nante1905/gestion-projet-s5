@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poketra</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="newcontainer">
+        <h2>Creation type</h2>
+        <form th:action="@{/type/insert}" method="post" id="form">
+          <label for="nom">Nom:</label>
+          <input type="text" name="nom" id="nom" /> <br />
+
+          <button type="submit" style="font-size: 16px">Ajouter</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
+

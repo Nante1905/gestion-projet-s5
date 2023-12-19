@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poketra</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="newcontainer">
+        <h2>Formule de fabrication</h2>
+        <form th:action="@{/formule-fab/insert}" method="post" id="form">
+          <label for="type">Type:</label>
+          <select name="idType" id="idType">
+            <option
+              th:each="type : ${types}"
+              th:value="${type.id}"
+              th:text="${type.nom}"
+            ></option>
+          </select>
+          <label for="look">Look:</label>
+          <select name="idLook" id="idLook">
+            <option
+              th:each="look : ${looks}"
+              th:value="${look.id}"
+              th:text="${look.nom}"
+            ></option>
+          </select>
+          <br />
+          <label for="taille">Taille:</label>
+          <select name="idTaille" id="idTaille">
+            <option
+              th:each="taille : ${tailles}"
+              th:value="${taille.id}"
+              th:text="${taille.ref}"
+            ></option>
+          </select>
+          <br />
+
+          <label for="matiere">Matière</label> <br />
+          <select name="idMatiere" id="matiere">
+            <option
+              th:each="matiere : ${matieres}"
+              th:value="${matiere.id}"
+              th:text="${matiere.nom}"
+            ></option>
+          </select>
+          <label for="quantite">Quantité</label>
+          <input type="text" name="qte" id="quantite" />
+
+          <button type="submit" style="font-size: 16px">Valider</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
+

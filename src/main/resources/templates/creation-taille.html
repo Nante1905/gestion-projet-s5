@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poketra</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="newcontainer">
+        <h2>Creation taille</h2>
+        <form th:action="@{/taille/insert}" method="post" id="form">
+          <label for="reference">Référence:</label>
+          <input type="text" name="ref" id="ref" /> <br />
+
+          <button type="submit" style="font-size: 16px">Valider</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
+

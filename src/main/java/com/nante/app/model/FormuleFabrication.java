@@ -20,10 +20,16 @@ public class FormuleFabrication extends GenericModel {
     @ManyToOne
     @JoinColumn(name = "id_taille")
     Taille taille;
+
+    @ManyToOne
     @JoinColumn(name = "id_type")
     Type type;
+
+    @ManyToOne
     @JoinColumn(name = "id_matiere")
     Matiere matiere;
+
+    @ManyToOne
     @JoinColumn(name = "id_look")
     Look look;
     Double qte;

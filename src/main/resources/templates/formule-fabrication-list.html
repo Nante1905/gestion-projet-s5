@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poketra</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="newcontainer">
+        <h2>Liste fabrication</h2>
+        <form action="" method="get" id="form">
+          <label for="idMatiere">Matiere:</label>
+          <select name="idMatiere" id="idMatiere">
+            <option
+              th:each="matiere : ${matieres}"
+              th:value="${matiere.id}"
+              th:text="${matiere.nom}"
+            ></option>
+          </select>
+
+          <button type="submit" style="font-size: 16px">Valider</button>
+        </form>
+
+        <table class="table table-striped">
+          <tr>
+            <th>Type</th>
+            <th>Taille</th>
+            <th>Matière</th>
+            <th>Quantité</th>
+          </tr>
+          <tr th:each="fabrication : ${fabrications}">
+            <td th:text="${fabrication.type.nom}"></td>
+            <td th:text="${fabrication.taille.ref}">Taille</td>
+            <td th:text="${fabrication.matiere.nom}">Matière</td>
+            <td th:text="${fabrication.qte}">Quantité</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
+
