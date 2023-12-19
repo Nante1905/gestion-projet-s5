@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matieres</title>
+    <link rel="stylesheet" th:href="@{/css/matiere/matiere-look.css}" />
+    <i th:replace="fragments/header/header :: header"></i>
+  </head>
+  <body>
+    <i th:replace="fragments/sidebar/sidebar :: sidebar"></i>
+    <div class="content">
+      <form
+        method="get"
+        th:action="@{/matieres/look}"
+        enctype="multipart/form-data"
+      >
+        <label for="lists" style="font-size: 17px">Look: </label>
+        <select name="idLook" style="margin-right: 22px">
+          <option
+            value=""
+            th:each="look :${looks}"
+            th:value="${look.id}"
+            th:text="${look.nom}"
+          ></option>
+        </select>
+        <input type="submit" value="Rechercher" class="btn btn-primary" />
+      </form>
+
+      <div class="table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Ref</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="matiere : ${matieres}">
+              <td th:text="${matiere.id}"></td>
+              <td th:text="${matiere.nom}"></td>
+              <td th:text="${matiere.ref}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+

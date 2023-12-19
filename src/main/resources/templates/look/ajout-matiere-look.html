@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Look | Ajout matiere</title>
+    <link th:replace="fragments/header/header :: header" />
+  </head>
+  <body>
+    <i th:replace="fragments/sidebar/sidebar :: sidebar"></i>
+    <div class="content">
+      <div class="title"><h1>Ajout matiere</h1></div>
+      <form class="form" th:action="@{/looks/add-matiere}" method="post">
+        <div class="select-look">
+          <label for="">Look</label>
+          <select name="look" style="margin-right: 22px">
+            <option
+              th:each="look :${looks}"
+              th:value="${look.id}"
+              th:text="${look.nom}"
+            ></option>
+          </select>
+        </div>
+        <br />
+
+        <h5>Selectionner les matieres a ajouter</h5>
+        <div class="matiere-form" th:each="matiere: ${matieres}">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="matieres[]"
+              th:text="${matiere.nom}"
+              th:value="${matiere.id}"
+            />
+          </div>
+        </div>
+        <br />
+        <input
+          class="btn btn-primary"
+          data-mdb-ripple-init
+          type="submit"
+          value="Valider"
+        />
+      </form>
+    </div>
+  </body>
+  <script th:replace="fragments/footer/footer :: footer"></script>
+</html>

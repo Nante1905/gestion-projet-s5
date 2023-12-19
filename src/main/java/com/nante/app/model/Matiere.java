@@ -3,14 +3,24 @@ package com.nante.app.model;
 import com.nante.app.crud.model.GenericModel;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Matiere extends GenericModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String nom;
     String ref;
+
+    public Matiere() {
+    }
+
+    public Matiere(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;

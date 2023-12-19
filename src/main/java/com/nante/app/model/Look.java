@@ -1,5 +1,6 @@
 package com.nante.app.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nante.app.crud.model.GenericModel;
@@ -19,7 +20,7 @@ public class Look extends GenericModel {
 
     @ManyToMany
     @JoinTable(name = "look_matiere", joinColumns = @JoinColumn(name = "id_look"), inverseJoinColumns = @JoinColumn(name = "id_matiere"))
-    List<Matiere> matieres;
+    List<Matiere> matieres = new ArrayList<>();
 
     public List<Matiere> getMatieres() {
         return matieres;
@@ -27,6 +28,10 @@ public class Look extends GenericModel {
 
     public void setMatieres(List<Matiere> matieres) {
         this.matieres = matieres;
+    }
+
+    public void addMatiere(Matiere matiere) {
+        this.matieres.add(matiere);
     }
 
     public int getId() {

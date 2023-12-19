@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creation-matiere</title>
+    <link th:replace="fragments/header/header :: header" />
+  </head>
+  <body>
+    <i th:replace="fragments/sidebar/sidebar :: sidebar"></i>
+    <div class="content">
+      <form th:action="@{/matieres/insert}" method="post">
+        <h3>Creation matieres</h3>
+        <div class="form-outline" data-mdb-input-init>
+          <input type="text" name="nom" class="form-control" />
+          <label for="nom" class="form-label">Nom</label>
+        </div>
+        <br />
+        <div class="form-outline" data-mdb-input-init>
+          <input type="text" name="ref" class="form-control" />
+          <label for="ref" class="form-label">Ref:</label>
+        </div>
+        <br />
+        <input type="submit" class="btn btn-primary" value="Valider" />
+      </form>
+    </div>
+  </body>
+  <footer th:replace="fragments/footer/footer.html :: footer"></footer>
+</html>
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/look/creation-look.css}" />
+    <title>Creation-look</title>
+    <i th:replace="fragments/header/header.html :: header"></i>
+  </head>
+  <body>
+    <i th:replace="fragments/sidebar/sidebar :: sidebar"></i>
+    <div class="content">
+      <div class="title">
+        <h1>Creation Look</h1>
+      </div>
+      <form th:action="@{/looks/insert}" method="post">
+        <div class="form-outline" data-mdb-input-init>
+          <input class="form-control" type="text" name="nom" />
+          <label class="form-label" for="nom">Nom</label>
+        </div>
+        <br />
+        <div class="form-outline" data-mdb-input-init>
+          <input class="form-control" type="text" name="ref" />
+          <label for="ref" class="form-label">Ref: </label>
+        </div>
+        <br />
+
+        <input
+          class="btn btn-primary"
+          data-mdb-ripple-init
+          type="submit"
+          value="Valider"
+        />
+      </form>
+    </div>
+    <footer th:replace="fragments/footer/footer.html :: footer"></footer>
+  </body>
+</html>
+

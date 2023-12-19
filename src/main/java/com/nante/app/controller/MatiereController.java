@@ -28,13 +28,13 @@ public class MatiereController {
 
     @GetMapping("/create")
     public String insererMatiereVue(Model model) {
-        return "creation-matiere.html";
+        return "matiere/creation-matiere.html";
     }
 
     @PostMapping("/insert")
     public String insererMatiere(Model model, @ModelAttribute Matiere m) {
         this.matiereService.save(m);
-        return "redirect:/matieres";
+        return "redirect:/matieres/look";
     }
 
     @GetMapping("/look")
@@ -45,7 +45,7 @@ public class MatiereController {
             List<Matiere> matieres = lookService.findMatieresOf(Integer.parseInt(idLook));
             model.addAttribute("matieres", matieres);
             model.addAttribute("looks", looks);
-            return "matieres.html";
+            return "matiere/matieres.html";
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
