@@ -40,3 +40,5 @@ create table formule_fabrication(
 insert into type(nom) values('type1');
 insert into taille(ref) values('ref1');
 insert into formule_fabrication(id_taille,id_type,id_matiere,qte) values (1,1,1,2);
+
+alter table formule_fabrication add id_look int references look(id);
