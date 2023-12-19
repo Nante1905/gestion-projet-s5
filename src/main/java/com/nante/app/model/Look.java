@@ -6,6 +6,8 @@ import java.util.List;
 import com.nante.app.crud.model.GenericModel;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -14,6 +16,8 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Look extends GenericModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     int id;
     String nom;
     String ref;
