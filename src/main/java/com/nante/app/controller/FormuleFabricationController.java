@@ -52,7 +52,10 @@ public class FormuleFabricationController {
         List<FormuleFabrication> fabrications = this.fabricationService.findByIdMatiere(id);
         List<Matiere> matieres = this.matiereService.findAll();
 
-        System.out.println("debug =================================== " + fabrications.size());
+        // FormuleFabrication f1 = this.fabricationService.find(5);
+        // System.out.println(f1.getLook().getNom());
+
+        System.out.println("debug =================================== ");
         model.addAttribute("matieres", matieres);
 
         model.addAttribute("fabrications", fabrications);
@@ -75,28 +78,55 @@ public class FormuleFabricationController {
     @PostMapping("/insert")
     public String insert(Model model, @ModelAttribute FormuleFabricationDto params) throws Exception {
 
-        Look look = new Look();
-        look.setId(params.getIdLook());
+        // Look look = new Look();
+        // look.setId(params.getIdLook());
 
-        Type type = new Type();
-        type.setId(params.getIdType());
+        // Type type = new Type();
+        // type.setId(params.getIdType());
 
-        Taille taille = new Taille();
-        taille.setId(params.getIdTaille());
+        // Taille taille = new Taille();
+        // taille.setId(params.getIdTaille());
 
-        Matiere matiere = new Matiere();
-        matiere.setId(params.getIdMatiere());
+        // Matiere matiere = new Matiere();
+        // matiere.setId(params.getIdMatiere());
 
         FormuleFabrication fabrication = new FormuleFabrication();
-        fabrication.setLook(look);
-        fabrication.setMatiere(matiere);
-        fabrication.setTaille(taille);
-        fabrication.setType(type);
+        fabrication.setId_look(params.getIdLook());
+        fabrication.setId_matiere(params.getIdMatiere());
+        fabrication.setId_taille(params.getIdTaille());
+        fabrication.setId_type(params.getIdType());
         fabrication.setQte(params.getQte());
 
         this.fabricationService.save(fabrication);
 
         return "redirect:/formule-fab/create";
     }
+    // @PostMapping("/insert")
+    // public String insert(Model model, @ModelAttribute FormuleFabricationDto
+    // params) throws Exception {
+
+    // Look look = new Look();
+    // look.setId(params.getIdLook());
+
+    // Type type = new Type();
+    // type.setId(params.getIdType());
+
+    // Taille taille = new Taille();
+    // taille.setId(params.getIdTaille());
+
+    // Matiere matiere = new Matiere();
+    // matiere.setId(params.getIdMatiere());
+
+    // FormuleFabrication fabrication = new FormuleFabrication();
+    // fabrication.setLook(look);
+    // fabrication.setMatiere(matiere);
+    // fabrication.setTaille(taille);
+    // fabrication.setType(type);
+    // fabrication.setQte(params.getQte());
+
+    // this.fabricationService.save(fabrication);
+
+    // return "redirect:/formule-fab/create";
+    // }
 
 }

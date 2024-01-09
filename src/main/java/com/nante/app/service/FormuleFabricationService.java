@@ -15,13 +15,18 @@ public class FormuleFabricationService extends GenericService<FormuleFabrication
     @Autowired
     private FormuleFabricationRepository repo;
 
-    public FormuleFabrication save(FormuleFabrication f) {
-        this.repo.save(f.getTaille().getId(), f.getType().getId(), f.getMatiere().getId(), f.getLook().getId(),
-                f.getQte());
-        return null;
-    }
+    // public FormuleFabrication save(FormuleFabrication f) {
+    // this.repo.save(f.getTaille().getId(), f.getType().getId(),
+    // f.getMatiere().getId(), f.getLook().getId(),
+    // f.getQte());
+    // return null;
+    // }
 
     public List<FormuleFabrication> findByIdMatiere(int id) {
         return repo.findByMatiere_Id(id);
+    }
+
+    public FormuleFabrication findWithLook(int ffId) {
+        return this.repo.findWithLook(ffId);
     }
 }

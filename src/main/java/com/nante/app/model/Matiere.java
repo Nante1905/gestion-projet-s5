@@ -14,6 +14,7 @@ public class Matiere extends GenericModel {
     int id;
     String nom;
     String ref;
+    Double pu;
 
     public Matiere() {
     }
@@ -44,5 +45,13 @@ public class Matiere extends GenericModel {
 
     public void setRef(String ref) {
         this.ref = ref;
+    }
+
+    public Double getPu() {
+        return pu;
+    }
+
+    public void setPu(Double pu) {
+        this.pu = pu;
     }
 }

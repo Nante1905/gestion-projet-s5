@@ -16,6 +16,7 @@ import com.nante.app.model.Look;
 import com.nante.app.model.Matiere;
 import com.nante.app.service.LookService;
 import com.nante.app.service.MatiereService;
+import com.nante.app.types.MatierePrixDto;
 
 @Controller
 @RequestMapping("matieres")
@@ -50,5 +51,20 @@ public class MatiereController {
             e.printStackTrace();
             throw e;
         }
+    }
+
+    @GetMapping("/update-pu")
+    public String updatePuMatiereVue(Model model) {
+        List<Matiere> matieres = this.matiereService.findAll();
+        model.addAttribute("matieres", matieres);
+        return "";
+    }
+
+    @PostMapping("/update-pu")
+    public String updatePuMatiereVue(MatierePrixDto matierePrixDto) throws NotFoundException {
+        Matiere m = this.matiereService.find(matierePrixDto.getIdMatiere());
+        m.setPu(matierePrixDto.getPrix());
+        this.matiereService.save(m);
+        return "redirect:/matieres/update-pu";
     }
 }

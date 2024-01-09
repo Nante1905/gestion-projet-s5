@@ -1,8 +1,12 @@
 package com.nante.app.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.nante.app.crud.model.GenericModel;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,20 +21,26 @@ public class FormuleFabrication extends GenericModel {
 
     int id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_taille")
+    int id_taille;
+    int id_type;
+    int id_matiere;
+    int id_look;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_taille", insertable = false, updatable = false)
     Taille taille;
 
-    @ManyToOne
-    @JoinColumn(name = "id_type")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type", insertable = false, updatable = false)
     Type type;
 
-    @ManyToOne
-    @JoinColumn(name = "id_matiere")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_matiere", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
     Matiere matiere;
 
-    @ManyToOne
-    @JoinColumn(name = "id_look")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_look", insertable = false, updatable = false)
     Look look;
     Double qte;
 
@@ -80,6 +90,38 @@ public class FormuleFabrication extends GenericModel {
 
     public void setQte(Double qte) {
         this.qte = qte;
+    }
+
+    public int getId_taille() {
+        return id_taille;
+    }
+
+    public void setId_taille(int id_taille) {
+        this.id_taille = id_taille;
+    }
+
+    public int getId_type() {
+        return id_type;
+    }
+
+    public void setId_type(int id_type) {
+        this.id_type = id_type;
+    }
+
+    public int getId_matiere() {
+        return id_matiere;
+    }
+
+    public void setId_matiere(int id_matiere) {
+        this.id_matiere = id_matiere;
+    }
+
+    public int getId_look() {
+        return id_look;
+    }
+
+    public void setId_look(int id_look) {
+        this.id_look = id_look;
     }
 
 }
