@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacs</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="divForm">
+      <h3><u>Ajout fournisseur</u></h3>
+      <form th:action="@{/fournisseurs/insert}" method="post">
+        <label for="nom">Nom:</label>
+        <input type="text" name="nom" id="nom" /> <br />
+
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+    </div>
+  </body>
+</html>

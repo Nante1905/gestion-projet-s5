@@ -3,6 +3,7 @@ package com.nante.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,17 +18,17 @@ public class FournisseurController {
     @Autowired
     private FournisseurRepository fournisseurRepository;
 
-    @PostMapping("create")
+    @GetMapping("create")
     public String ajoutFournisseurView(Model model) {
 
         return "fournisseurs/ajout-fournisseur.html";
     }
 
-    @PostMapping("create")
+    @PostMapping("insert")
     public String ajoutFournisseur(Model model, @ModelAttribute Fournisseur fournisseur) {
 
         fournisseurRepository.save(fournisseur);
 
-        return "redirect:fournisseurs/ajout-fournisseur.html";
+        return "redirect:/fournisseurs/ajout-fournisseur.html";
     }
 }

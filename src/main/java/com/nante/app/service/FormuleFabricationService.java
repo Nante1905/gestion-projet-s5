@@ -20,8 +20,7 @@ public class FormuleFabricationService extends GenericService<FormuleFabrication
     private FormuleFabricationRepository repo;
 
     @Autowired
-    private EntityManager em ;
-
+    private EntityManager em;
 
     // public FormuleFabrication save(FormuleFabrication f) {
     // this.repo.save(f.getTaille().getId(), f.getType().getId(),
@@ -38,19 +37,25 @@ public class FormuleFabricationService extends GenericService<FormuleFabrication
         return this.repo.findWithLook(ffId);
     }
 
-    public void fabriquer(int type , int taille , int look , double qte) throws Exception{
-        List<FormuleFabrication> liste_formule= this.em.createNativeQuery("select * from formule_fabrication where id_type = "+type+" and id_taille = "+taille+" and id_look = "+look, FormuleFabrication.class).getResultList();
-        List<VStockMatiere> liste_VStock = this.em.createNativeQuery("select * from v_stock_matiere" , VStockMatiere.class).getResultList();
-        HashMap<Integer , Double> stock = new HashMap<>();
+    public void fabriquer(int type, int taille, int look, double qte) throws Exception {
+        List<FormuleFabrication> liste_formule = this.em
+                .createNativeQuery("select * from formule_fabrication where id_type = " + type + " and id_taille = "
+                        + taille + " and id_look = " + look, FormuleFabrication.class)
+                .getResultList();
+
+        List<VStockMatiere> liste_VStock = this.em
+                .createNativeQuery("select * from v_stock_matiere", VStockMatiere.class).getResultList();
+
+        HashMap<Integer, Double> stock = new HashMap<>();
         for (VStockMatiere vsm : liste_VStock) {
             stock.put(vsm.getIdMatiere(), vsm.getQteRestant());
         }
+
         for (FormuleFabrication ff : liste_formule) {
             if (stock.get(ff.getId_matiere()) < ff.getQte()) {
                 throw new Exception("Stock insuffisante");
             }
         }
     }
-
 
 }

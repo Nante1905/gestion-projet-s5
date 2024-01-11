@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacs</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="divForm">
+      <h3><u>Achat matière:</u></h3>
+      <form th:action="@{/matieres/achat/process}" method="post">
+        <label for="matiere">Matière:</label>
+        <select name="idMatiere" id="matiere">
+          <option
+            th:each="matiere : ${matieres}"
+            th:text="${matiere.nom}"
+            th:value="${matiere.id}"
+          ></option>
+        </select>
+        <br />
+        <label for="fournisseur">Fournisseur:</label>
+        <select name="idFournisseur" id="fournisseur">
+          <option
+            th:each="fournisseur : ${fournisseurs}"
+            value=""
+            th:text="${fournisseur.nom}"
+            th:value="${fournisseur.id}"
+          ></option>
+        </select>
+        <br />
+        <label for="quantite">Quantité:</label>
+        <input type="number" name="qte" id="quantite" /> <br />
+
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </form>
+    </div>
+  </body>
+</html>
+

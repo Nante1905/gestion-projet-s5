@@ -66,3 +66,42 @@ join matiere m on m.id = ff.id_matiere
 group by t.nom, ta.ref, l.nom;
 
 alter table historique_pu add id int primary key;
+
+
+--11-01-24
+
+create table fournisseur(
+    id serial PRIMARY KEY,
+    nom VARCHAR(20)
+);
+
+create table achat_matiere(
+    id_matiere int REFERENCES matiere(id),
+    qte numeric,
+    id_fournisseur int REFERENCES fournisseur(id),
+    date_achat date
+);
+
+create table fabrication(
+    id serial PRIMARY KEY,
+    id_type int REFERENCES type(id),
+    id_taille int references taille(id),
+    id_look int references look(id),
+    qte numeric,
+    date_fabrication date
+);
+
+create table utilisation_matiere(
+    id_matiere int REFERENCES matiere(id),
+    qte numeric,
+    date_utilisation date,
+    id_fabrication int REFERENCES fabrication(id)
+);
+
+
+CREATE OR REPLACE VIEW v_stock_matiere AS 
+SELECT id_matiere, SUM(qte) FROM (
+   SELECT utilisation_matiere.id_matiere, utilisation_matiere.qte * (-1) AS qte FROM utilisation_matiere
+   UNION ALL 
+   SELECT achat_matiere.id_matiere, achat_matiere.qte FROM achat_matiere
+) AS view GROUP BY id_matiere;

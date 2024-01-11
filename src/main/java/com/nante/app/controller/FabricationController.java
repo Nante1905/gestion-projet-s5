@@ -14,6 +14,7 @@ import com.nante.app.model.Fabrication;
 import com.nante.app.model.Look;
 import com.nante.app.model.Taille;
 import com.nante.app.model.Type;
+import com.nante.app.service.FormuleFabricationService;
 import com.nante.app.service.LookService;
 import com.nante.app.service.TailleService;
 import com.nante.app.service.TypeService;
@@ -29,6 +30,9 @@ public class FabricationController {
     @Autowired
     private TailleService tailleService;
 
+    @Autowired
+    private FormuleFabricationService formuleFabricationService;
+
     @GetMapping("/create")
     public String fabricationFormView(Model model) {
 
@@ -40,12 +44,15 @@ public class FabricationController {
         model.addAttribute("looks", looks);
         model.addAttribute("tailles", tailles);
 
-        return "fabrication/fabrication-sac.html";
+        return "sacs/fabrication-sac.html";
     }
 
     @PostMapping("/insert")
-    public String fabricationFormProcess(Model model, @ModelAttribute Fabrication fabrication) {
+    public String fabricationFormProcess(Model model, @ModelAttribute Fabrication fabrication) throws Exception {
 
-        return "redirect:fabrication/fabrication-sac.html";
+        this.formuleFabricationService.fabriquer(fabrication.getIdType(), fabrication.getIdTaille(),
+                fabrication.getIdLook(), fabrication.getQte());
+
+        return "redirect:sacs/fabrication-sac.html";
     }
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacs</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="divForm">
+      <h3><u>Fabrication sac</u></h3>
+      <form th:action="@{/fabrication/insert}" method="post">
+        <label for="type">Type:</label>
+        <select name="type" id="type">
+          <option
+            th:each="type : ${types}"
+            th:text="${type.nom}"
+            th:value="${type.id}"
+          ></option>
+        </select>
+        <br />
+        <label for="taille">Taille:</label>
+        <select name="taille" id="taille">
+          <option
+            th:each="taille : ${tailles}"
+            th:text="${taille.ref}"
+            th:value="${taille.id}"
+          ></option>
+        </select>
+        <br />
+        <label for="look">Look:</label>
+        <select name="look" id="look">
+          <option
+            th:each="look : ${looks}"
+            th:text="${look.nom}"
+            th:value="${look.id}"
+          ></option>
+        </select>
+        <br />
+        <label for="quantite">Quantité:</label>
+        <input type="number" name="quantite" id="quantite" /> <br />
+
+        <button type="submit" class="btn btn-primary">Fabriquer</button>
+      </form>
+    </div>
+  </body>
+</html>
+
