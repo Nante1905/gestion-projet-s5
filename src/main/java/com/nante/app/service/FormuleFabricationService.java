@@ -56,6 +56,11 @@ public class FormuleFabricationService extends GenericService<FormuleFabrication
                 throw new Exception("Stock insuffisante");
             }
         }
+
+        int id = (int)this.em.createNativeQuery("insert into fabrication values ("+type+","+taille+","+look+","+qte+",now())").getSingleResult();
+        for (FormuleFabrication ff : liste_formule) {
+            this.em.createNativeQuery("insert into utilisation_matiere values ("+ff.getId_matiere()+","+ff.getQte() * qte+",now(),"+id+")");
+        }
     }
 
 }
