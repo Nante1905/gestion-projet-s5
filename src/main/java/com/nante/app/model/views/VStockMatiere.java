@@ -1,10 +1,10 @@
-package com.nante.app.model;
+package com.nante.app.model.views;
 
-public class StockMatiere {
+public class VStockMatiere {
     int idMatiere ;
     String nomMatiere ;
     double qteRestant ;
-    
+
     public int getIdMatiere() {
         return idMatiere;
     }
