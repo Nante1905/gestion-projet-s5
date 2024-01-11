@@ -1,5 +1,7 @@
 package com.nante.app.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nante.app.model.AchatMatiere;
 import com.nante.app.model.Look;
 import com.nante.app.model.Matiere;
 import com.nante.app.service.LookService;
@@ -80,5 +83,32 @@ public class MatiereController {
                 .setParameter(1, matierePrixDto.getIdMatiere())
                 .setParameter(2, matierePrixDto.getPrix()).executeUpdate();
         return "redirect:/matieres/update-pu";
+    }
+
+    @GetMapping("/achat")
+    public String achatMatiereView(Model model) {
+        List<Matiere> matieres = this.matiereService.findAll();
+        List<?> fournisseurs = new ArrayList<>();
+
+        model.addAttribute("matieres", matieres);
+        model.addAttribute("fournisseurs", fournisseurs);
+
+        return "matiere/achat-matiere";
+    }
+
+    @PostMapping("/achat/process")
+    public String achatMatiere(Model model, @ModelAttribute AchatMatiere achatMatiere) throws Exception {
+
+        achatMatiere.setDateAchat(LocalDate.now());
+
+        em.createNativeQuery(
+                "insert into achat matiere (id_matiere, qte, id_fournisseur, date_achat) values (?1, ?2, ?3, ?4)")
+                .setParameter(1, achatMatiere.getIdMatiere())
+                .setParameter(2, achatMatiere.getQte())
+                .setParameter(3, achatMatiere.getIdFournisseur())
+                .setParameter(4, achatMatiere.getDateAchat())
+                .executeUpdate();
+
+        return "redirect:matiere/achat-matiere";
     }
 }
