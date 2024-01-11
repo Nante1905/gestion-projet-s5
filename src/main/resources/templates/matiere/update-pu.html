@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+     content="width=device-width, initial-scale=1.0">
+    <title>Sacs</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="divForm">
+        <h3><u>Modifier PU</u></h3>
+        <form action="" method="post" th:action="@{/matieres/update-pu}">
+            <label for="matiere">Matière:</label>
+            <select name="idMatiere" style="margin-right: 22px">
+                <option
+                  th:each="matiere :${matieres}"
+                  th:value="${matiere.id}"
+                  th:text="${matiere.nom}"
+                ></option>
+            <label for="pu">pu:</label>
+             <input type="text" name="prix" id="pu"> <br>
+
+            <button type="submit" class="btn btn-primary">Valider</button>
+        </form>
+    </div>
+</body>
+</html>

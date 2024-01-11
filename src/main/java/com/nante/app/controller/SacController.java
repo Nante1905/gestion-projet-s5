@@ -32,13 +32,14 @@ public class SacController {
             List<VSacPrix> sacs = VSacPrix.findAllSacsBetween(min, max, em);
 
             model.addAttribute("sacs", sacs);
+            System.out.println("debugggggggg " + sacs.size());
 
-            return "";
+            return "sacs/liste-sac-prix";
 
         } catch (NumberFormatException nbFormatE) {
             throw new NumberFormatException("Les valeurs min et max doivent être des nombres");
         } catch (Exception e) {
-            throw new Exception("Une erreur est survenue");
+            throw e;
         }
     }
 }

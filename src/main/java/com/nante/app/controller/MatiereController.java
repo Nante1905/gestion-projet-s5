@@ -18,6 +18,10 @@ import com.nante.app.service.LookService;
 import com.nante.app.service.MatiereService;
 import com.nante.app.types.MatierePrixDto;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+
 @Controller
 @RequestMapping("matieres")
 public class MatiereController {
@@ -26,6 +30,9 @@ public class MatiereController {
 
     @Autowired
     private MatiereService matiereService;
+
+    @PersistenceContext
+    private EntityManager em;
 
     @GetMapping("/create")
     public String insererMatiereVue(Model model) {
@@ -57,14 +64,21 @@ public class MatiereController {
     public String updatePuMatiereVue(Model model) {
         List<Matiere> matieres = this.matiereService.findAll();
         model.addAttribute("matieres", matieres);
-        return "";
+        return "matiere/update-pu.html";
     }
 
     @PostMapping("/update-pu")
-    public String updatePuMatiereVue(MatierePrixDto matierePrixDto) throws NotFoundException {
+    @Transactional()
+    public String updatePuMatiereVue(MatierePrixDto matierePrixDto) throws Exception {
+        if (matierePrixDto.getPrix() < 0) {
+            throw new Exception("Le prix ne peut pas être négatif");
+        }
         Matiere m = this.matiereService.find(matierePrixDto.getIdMatiere());
         m.setPu(matierePrixDto.getPrix());
         this.matiereService.save(m);
+        em.createNativeQuery("insert into historique_pu (id_matiere, date_pu, valeur) values (?1, now(), ?2)")
+                .setParameter(1, matierePrixDto.getIdMatiere())
+                .setParameter(2, matierePrixDto.getPrix()).executeUpdate();
         return "redirect:/matieres/update-pu";
     }
 }

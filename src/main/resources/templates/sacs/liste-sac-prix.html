@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacs</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="divForm">
+      <h3><u>Liste des sacs:</u></h3>
+      <form action="" method="get" th:action="@{/sacs}">
+        <label for="">Prix:</label>
+        <b>min:</b><input type="number" name="min" id="min" /> <b>max:</b
+        ><input type="number" name="max" id="max" />
+
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </form>
+
+      <table class="table table-striped">
+        <tr>
+          <td>NOM</td>
+          <td>TAILLE</td>
+          <td>LOOK</td>
+          <td>PRIX</td>
+        </tr>
+        <tr th:each="sac : ${sacs}">
+          <td th:text="${sac.type}"></td>
+          <td th:text="${sac.taille}">TAILLE</td>
+          <td th:text="${sac.look}">LOOK</td>
+          <td th:text="${sac.prix}">PRIX</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+

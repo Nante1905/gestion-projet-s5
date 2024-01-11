@@ -35,6 +35,8 @@ create table formule_fabrication(
     id_type int references type(id),
     id_matiere int references matiere(id),
     qte double precision
+    qte double precision,
+    id_look int
 );
 
 insert into type(nom) values('type1');
@@ -42,3 +44,25 @@ insert into taille(ref) values('ref1');
 insert into formule_fabrication(id_taille,id_type,id_matiere,qte) values (1,1,1,2);
 
 alter table formule_fabrication add id_look int references look(id);
+
+
+-- 09-01-24
+
+
+alter table matiere add column pu numeric;
+
+CREATE table historique_pu(
+    id_matiere int REFERENCES matiere(id),
+    date date,
+    valeur NUMERIC
+);
+
+select t.nom type_nom, ta.ref taille, l.nom look, sum(ff.qte*m.pu) prix
+from formule_fabrication ff
+join look l on ff.id_look = l.id
+join type t on t.id = ff.id_type
+join taille ta on ta.id = ff.id_taille
+join matiere m on m.id = ff.id_matiere
+group by t.nom, ta.ref, l.nom;
+
+alter table historique_pu add id int primary key;

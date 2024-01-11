@@ -5,10 +5,17 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 public class VSacPrix {
-    String type;
+    String typeNom;
     String taille;
     String look;
     double prix;
+
+    public VSacPrix(String typeNom, String taille, String look, double prix) {
+        this.typeNom = typeNom;
+        this.taille = taille;
+        this.look = look;
+        this.prix = prix;
+    }
 
     public static List<VSacPrix> findAllSacsBetween(double min, double max, EntityManager em) {
         return em.createNativeQuery("select * from v_sac_prix where prix between ?1 and ?2", VSacPrix.class)
@@ -16,11 +23,11 @@ public class VSacPrix {
     }
 
     public String getType() {
-        return type;
+        return typeNom;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.typeNom = type;
     }
 
     public String getTaille() {
