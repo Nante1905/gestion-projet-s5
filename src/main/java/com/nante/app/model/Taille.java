@@ -13,6 +13,7 @@ public class Taille extends GenericModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    int ordre ;
     String ref;
 
     public int getId() {
@@ -30,4 +31,13 @@ public class Taille extends GenericModel {
     public void setRef(String ref) {
         this.ref = ref;
     }
+
+    public int getOrdre() {
+        return ordre;
+    }
+
+    public void setOrdre(int ordre) {
+        this.ordre = ordre;
+    }
+
 }

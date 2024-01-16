@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BeneficeController {
 
     @GetMapping("/benef")
-    public String benef(Model model) {
+    public String benefView(Model model) {
         return "benef.html";
     }
 }

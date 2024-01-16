@@ -6,18 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nante.app.model.Look;
+import com.nante.app.model.NbrMinEmp;
+import com.nante.app.model.PrixVente;
 import com.nante.app.model.Taille;
+import com.nante.app.model.TauxHoraire;
+import com.nante.app.model.TempsFabrication;
 import com.nante.app.model.Type;
 import com.nante.app.service.LookService;
 import com.nante.app.service.TailleService;
 import com.nante.app.service.TypeService;
 
+import jakarta.persistence.EntityManager;
+
 @Controller
 @RequestMapping("gestion")
 public class GestionController {
+
+    @Autowired
+    private EntityManager em;
 
     @Autowired
     LookService lookService;
@@ -28,25 +39,43 @@ public class GestionController {
     @Autowired
     private TailleService tailleService;
 
-    @GetMapping("/edit-emp-min")
-    public String editEmpMin(Model model) {
-        return "edit-emp-min.html";
-    }
-
-    @GetMapping("/edit-taux-horaire")
-    public String editTauxHoraire(Model model) {
-        return "edit-taux-horaire.html";
-    }
-
     @GetMapping("/edit-duree-travail")
-    public String editDureeTravail(Model model) {
+    public String editDureeTravailView(Model model) {
         List<Look> looks = lookService.findAll();
         model.addAttribute("looks", looks);
         return "edit-duree-travail.html";
     }
 
+    @PostMapping("/edit-duree-travail")
+    public String editDureeTravail(Model model , @ModelAttribute TempsFabrication tempsFabrication) {
+        this.em.createNativeQuery("insert into temps_fabrication (idLook , duree) values ("+tempsFabrication.getIdLook()+" , "+tempsFabrication.getDuree()+")").executeUpdate();
+        return "redirect:/gestion/edit-duree-travail";
+    }
+
+    @GetMapping("/edit-emp-min")
+    public String editEmpMinVew(Model model) {
+        return "edit-emp-min.html";
+    }
+
+    @PostMapping("/edit-emp-min")
+    public String editEmpMin(Model model , @ModelAttribute NbrMinEmp nbrMinEmp) {
+        this.em.createNativeQuery("insert into nbr_min_emp (nbr) values ("+nbrMinEmp.getNbr()+")").executeUpdate();
+        return "redirect:/gestion/edit-emp-min";
+    }
+
+    @GetMapping("/edit-taux-horaire")
+    public String editTauxHoraireView(Model model) {
+        return "edit-taux-horaire.html";
+    }
+
+    @PostMapping("/edit-taux-horaire")
+    public String editTauxHoraire(Model model , @ModelAttribute TauxHoraire tauxHoraire) {
+        this.em.createNativeQuery("insert into taux_horaire (taux) values ("+tauxHoraire.getTaux()+")").executeUpdate();
+        return "redirect:/gestion/edit-taux-horaire";
+    }
+
     @GetMapping("/ajout-prix-vente")
-    public String ajoutPrixVente(Model model) {
+    public String ajoutPrixVenteView(Model model) {
         List<Type> types = typeService.findAll();
         List<Taille> tailles = tailleService.findAll();
         List<Look> looks = lookService.findAll();
@@ -54,5 +83,11 @@ public class GestionController {
         model.addAttribute("tailles", tailles);
         model.addAttribute("looks", looks);
         return "ajout-prix-vente.html";
+    }
+
+    @PostMapping("/ajout-prix-vente")
+    public String ajoutPrixVente(Model model , @ModelAttribute PrixVente prixVente) {
+        this.em.createNativeQuery("insert into prix_vente (idType , idTaille , idLook , prix) values ("+prixVente.getIdType()+" , "+prixVente.getIdTaille()+" , "+prixVente.getIdLook()+" , "+prixVente.getPrix()+")").executeUpdate();
+        return "redirect:/gestion/ajout-prix-vente";
     }
 }
