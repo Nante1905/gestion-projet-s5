@@ -1,5 +1,7 @@
 package com.nante.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,5 +29,12 @@ public class TailleController {
     public String insert(Model model, @ModelAttribute Taille taille) {
         this.tailleService.save(taille);
         return "redirect:/taille/create";
+    }
+
+    @GetMapping("/taille-ajout-ordre")
+    public String ajoutOrdreTailleView(Model model) {
+        List<Taille> tailles = tailleService.findAll();
+        model.addAttribute("tailles", tailles);
+        return "taille-ajout-ordre.html";
     }
 }
