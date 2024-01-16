@@ -19,6 +19,8 @@ import com.nante.app.service.LookService;
 import com.nante.app.service.TailleService;
 import com.nante.app.service.TypeService;
 
+import jakarta.transaction.Transactional;
+
 @Controller
 @RequestMapping("fabrication")
 public class FabricationController {
@@ -48,11 +50,12 @@ public class FabricationController {
     }
 
     @PostMapping("/insert")
+    @Transactional
     public String fabricationFormProcess(Model model, @ModelAttribute Fabrication fabrication) throws Exception {
 
         this.formuleFabricationService.fabriquer(fabrication.getIdType(), fabrication.getIdTaille(),
                 fabrication.getIdLook(), fabrication.getQte());
 
-        return "redirect:sacs/fabrication-sac.html";
+        return "redirect:/matieres/stock";
     }
 }

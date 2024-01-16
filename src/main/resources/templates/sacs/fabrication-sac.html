@@ -12,7 +12,7 @@
       <h3><u>Fabrication sac</u></h3>
       <form th:action="@{/fabrication/insert}" method="post">
         <label for="type">Type:</label>
-        <select name="type" id="type">
+        <select name="idType" id="type">
           <option
             th:each="type : ${types}"
             th:text="${type.nom}"
@@ -21,7 +21,7 @@
         </select>
         <br />
         <label for="taille">Taille:</label>
-        <select name="taille" id="taille">
+        <select name="idTaille" id="taille">
           <option
             th:each="taille : ${tailles}"
             th:text="${taille.ref}"
@@ -30,7 +30,7 @@
         </select>
         <br />
         <label for="look">Look:</label>
-        <select name="look" id="look">
+        <select name="idLook" id="look">
           <option
             th:each="look : ${looks}"
             th:text="${look.nom}"
@@ -38,12 +38,11 @@
           ></option>
         </select>
         <br />
-        <label for="quantite">Quantité:</label>
-        <input type="number" name="quantite" id="quantite" /> <br />
+        <label for="qte">Quantité:</label>
+        <input type="number" name="qte" id="quantite" /> <br />
 
         <button type="submit" class="btn btn-primary">Fabriquer</button>
       </form>
     </div>
   </body>
 </html>
-

@@ -114,13 +114,15 @@ public class MatiereController {
                 .setParameter(4, achatMatiere.getDateAchat())
                 .executeUpdate();
 
-        return "redirect:/matiere/achat-matiere";
+        return "redirect:/matieres/achat";
     }
 
     @GetMapping("/stock")
     public String stock(Model model) {
         List<VStockMatiere> stockMatieres = this.em
-                .createNativeQuery("select * froma v_stock_matiere", VStockMatiere.class).getResultList();
+                .createNativeQuery("select vsm.*, m.nom from v_stock_matiere vsm join matiere m on m.id=vsm.id_matiere",
+                        VStockMatiere.class)
+                .getResultList();
 
         model.addAttribute("stocks", stockMatieres);
 
