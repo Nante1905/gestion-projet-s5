@@ -88,7 +88,8 @@ public class GestionController {
         model.addAttribute("types", types);
         model.addAttribute("tailles", tailles);
         model.addAttribute("looks", looks);
-        return "benefice/ajout-prix-vente.html";
+        model.addAttribute("page", "benefice/ajout-prix-vente");
+        return "layout/index";
     }
 
     @PostMapping("/ajout-prix-vente")

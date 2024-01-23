@@ -21,7 +21,9 @@ public class FournisseurController {
     @GetMapping("create")
     public String ajoutFournisseurView(Model model) {
 
-        return "fournisseurs/ajout-fournisseur.html";
+        model.addAttribute("page", "fournisseurs/ajout-fournisseur");
+
+        return "layout/index";
     }
 
     @PostMapping("insert")

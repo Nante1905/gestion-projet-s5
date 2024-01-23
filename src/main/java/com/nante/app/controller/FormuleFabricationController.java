@@ -59,7 +59,8 @@ public class FormuleFabricationController {
         model.addAttribute("matieres", matieres);
 
         model.addAttribute("fabrications", fabrications);
-        return "formule-fabrication-list.html";
+        model.addAttribute("page", "formule-fabrication-list");
+        return "layout/index";
     }
 
     @GetMapping("/create")
@@ -72,7 +73,8 @@ public class FormuleFabricationController {
         model.addAttribute("matieres", matieres);
         model.addAttribute("tailles", tailles);
         model.addAttribute("looks", looks);
-        return "formule-fabrication-form.html";
+        model.addAttribute("page", "formule-fabrication-form");
+        return "layout/index";
     }
 
     @PostMapping("/insert")

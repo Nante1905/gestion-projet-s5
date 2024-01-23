@@ -45,13 +45,18 @@ public class FabricationController {
         model.addAttribute("types", types);
         model.addAttribute("looks", looks);
         model.addAttribute("tailles", tailles);
+        model.addAttribute("page", "sacs/fabrication-sac");
 
-        return "sacs/fabrication-sac.html";
+        return "layout/index";
     }
 
     @PostMapping("/insert")
     @Transactional
     public String fabricationFormProcess(Model model, @ModelAttribute Fabrication fabrication) throws Exception {
+
+        if (fabrication.getQte() <= 0) {
+            throw new Exception("Quantite invalide");
+        }
 
         this.formuleFabricationService.fabriquer(fabrication.getIdType(), fabrication.getIdTaille(),
                 fabrication.getIdLook(), fabrication.getQte());
