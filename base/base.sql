@@ -219,3 +219,18 @@ JOIN v_last_prix_vente vlpv on vcm.id_type=vlpv.id_type and vcm.taille=vlpv.id_t
 join v_last_tf vltf on vcm.look = vltf.idlook
 join v_last_emp_fabrication vlef on vcm.taille=vlef.id_taille
 cross join v_last_taux_horaire vlth;
+
+--23-01-24
+create table Employe(
+    id serial primary key,
+    nom varchar(20),
+    prenom varchar(15),
+    date_embauche date
+);
+
+create table categorie_emp(
+    id SERIAL PRIMARY key,
+    nom varchar(10),
+    annee_exp int,
+    coef_salaire int
+);
