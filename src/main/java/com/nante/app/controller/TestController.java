@@ -1,16 +1,17 @@
 package com.nante.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.nante.app.service.BeneficeService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-@RestController
+@Controller
 @RequestMapping("/test")
 public class TestController {
 
@@ -21,7 +22,7 @@ public class TestController {
     private BeneficeService beneficeService;
 
     @GetMapping("")
-    public String index() {
+    public String index(Model m) {
         // List<Look> matieres = em.createQuery("select l from Look l join fetch ",
         // Look.class).getResultList();
         // List<String> a = matieres.get(0).getMatieres().stream().map(m ->
@@ -29,7 +30,9 @@ public class TestController {
 
         // return String.join(", ", a);
 
-        this.beneficeService.getBeneficeParSac();
-        return "test";
+        // this.beneficeService.getBeneficeParSac();
+        // m.addAttribute("styles", new String[] { "haha", "huhu", "lolo" });
+        // m.addAttribute("page", "layout/test");
+        return "layout/index.html";
     }
 }

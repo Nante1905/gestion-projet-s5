@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" th:each="style : ${styles}" />
+    <link rel="stylesheet" th:href="@{/mdbootstrap/css/mdb.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <title>Poketra</title>
+  </head>
+  <body>
+    <div class="nav" th:insert="fragments/sidebar/sidebar"></div>
+    <div class="root" th:insert="~{@{| ${page}.html |}}"></div>
+  </body>
+
+  <script th:src="@{/mdbootstrap/js/mdb.min.js}"></script>
+</html>

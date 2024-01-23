@@ -22,6 +22,7 @@ public class BeneficeController {
     public String benefView(Model model, @RequestParam(required = false, defaultValue = "1") int min,
             @RequestParam(required = false, defaultValue = "1") int max) {
         model.addAttribute("benefices", Benefice.getBeneficeBetween(this.em, min, max));
-        return "benefice/benef.html";
+        model.addAttribute("page", "benefice/benef");
+        return "layout/index";
     }
 }

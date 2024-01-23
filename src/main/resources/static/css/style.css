@@ -1,20 +1,27 @@
 .divForm {
-    margin-top: 80px;
-    margin-left: 100px;
-    margin-right: 100px;
+  margin-top: 80px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
-label, input, select {
-    padding: 2px;
-    font-size: 15px;
-    margin-bottom: 9px;
+label,
+input,
+select {
+  padding: 2px;
+  font-size: 15px;
+  margin-bottom: 9px;
 }
 
 input {
-    margin-right: 10px;
-    margin-left: 5px;
+  margin-right: 10px;
+  margin-left: 5px;
 }
 
 table {
-    margin-top: 60px;
+  margin-top: 60px;
 }
+
+.root {
+  padding-left: 20%;
+}
+
