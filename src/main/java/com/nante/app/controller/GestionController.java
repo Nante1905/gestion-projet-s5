@@ -22,6 +22,7 @@ import com.nante.app.service.TailleService;
 import com.nante.app.service.TypeService;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 @Controller
 @RequestMapping("gestion")
@@ -43,34 +44,39 @@ public class GestionController {
     public String editDureeTravailView(Model model) {
         List<Look> looks = lookService.findAll();
         model.addAttribute("looks", looks);
-        return "edit-duree-travail.html";
+        return "benefice/edit-duree-travail.html";
     }
 
     @PostMapping("/edit-duree-travail")
-    public String editDureeTravail(Model model , @ModelAttribute TempsFabrication tempsFabrication) {
-        this.em.createNativeQuery("insert into temps_fabrication (idLook , duree) values ("+tempsFabrication.getIdLook()+" , "+tempsFabrication.getDuree()+")").executeUpdate();
+    @Transactional
+    public String editDureeTravail(Model model, @ModelAttribute TempsFabrication tempsFabrication) {
+        this.em.createNativeQuery("insert into temps_fabrication (idLook , duree) values ("
+                + tempsFabrication.getIdLook() + " , " + tempsFabrication.getDuree() + ")").executeUpdate();
         return "redirect:/gestion/edit-duree-travail";
     }
 
     @GetMapping("/edit-emp-min")
     public String editEmpMinVew(Model model) {
-        return "edit-emp-min.html";
+        return "benefice/edit-emp-min.html";
     }
 
     @PostMapping("/edit-emp-min")
-    public String editEmpMin(Model model , @ModelAttribute NbrMinEmp nbrMinEmp) {
-        this.em.createNativeQuery("insert into nbr_min_emp (nbr) values ("+nbrMinEmp.getNbr()+")").executeUpdate();
+    @Transactional
+    public String editEmpMin(Model model, @ModelAttribute NbrMinEmp nbrMinEmp) {
+        nbrMinEmp.insert(this.em);
         return "redirect:/gestion/edit-emp-min";
     }
 
     @GetMapping("/edit-taux-horaire")
     public String editTauxHoraireView(Model model) {
-        return "edit-taux-horaire.html";
+        return "benefice/edit-taux-horaire.html";
     }
 
     @PostMapping("/edit-taux-horaire")
-    public String editTauxHoraire(Model model , @ModelAttribute TauxHoraire tauxHoraire) {
-        this.em.createNativeQuery("insert into taux_horaire (taux) values ("+tauxHoraire.getTaux()+")").executeUpdate();
+    @Transactional
+    public String editTauxHoraire(Model model, @ModelAttribute TauxHoraire tauxHoraire) {
+        this.em.createNativeQuery("insert into taux_horaire (taux) values (" + tauxHoraire.getTaux() + ")")
+                .executeUpdate();
         return "redirect:/gestion/edit-taux-horaire";
     }
 
@@ -82,12 +88,13 @@ public class GestionController {
         model.addAttribute("types", types);
         model.addAttribute("tailles", tailles);
         model.addAttribute("looks", looks);
-        return "ajout-prix-vente.html";
+        return "benefice/ajout-prix-vente.html";
     }
 
     @PostMapping("/ajout-prix-vente")
-    public String ajoutPrixVente(Model model , @ModelAttribute PrixVente prixVente) {
-        this.em.createNativeQuery("insert into prix_vente (idType , idTaille , idLook , prix) values ("+prixVente.getIdType()+" , "+prixVente.getIdTaille()+" , "+prixVente.getIdLook()+" , "+prixVente.getPrix()+")").executeUpdate();
+    @Transactional
+    public String ajoutPrixVente(Model model, @ModelAttribute PrixVente prixVente) {
+        prixVente.insert(em);
         return "redirect:/gestion/ajout-prix-vente";
     }
 }

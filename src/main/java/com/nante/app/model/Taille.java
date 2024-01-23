@@ -13,7 +13,7 @@ public class Taille extends GenericModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int ordre ;
+    Integer ordre;
     String ref;
 
     public int getId() {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h>Modifier Nombre d employe min</h>
+    <form th:action="@{/gestion/edit-emp-min}" method="post">
+      <p>
+        Valeur:
+        <input type="number" name="nbr" />
+      </p>
+      <p><input type="submit" value="Modifier" /></p>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h>Ajout ordre taille</h>
+    <form th:action="@{/taille/ajout-ordre}" method="post">
+      <p>
+        taille:
+        <select name="id">
+          <option
+            value=""
+            th:each="taille : ${tailles}"
+            th:value="${taille.id}"
+            th:text="${taille.ref}"
+          ></option>
+        </select>
+      </p>
+      <p>
+        ordre:
+        <input type="text" name="ordre" />
+      </p>
+      <p><input type="submit" value="Ajouter" /></p>
+    </form>
+  </body>
+</html>

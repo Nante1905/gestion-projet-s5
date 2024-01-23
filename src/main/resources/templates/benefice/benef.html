@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h>Benefice par produit</h>
+    <form action="" method="">
+        <p>min:
+            <input type="number" name="min">
+        </p>
+        <p>max:
+            <input type="number" name="max">
+        </p>
+        <p><input type="submit" value="Rechercher"></p>
+    </form>
+    <p>
+<table>
+    <tr>
+        <th>type</th>
+        <th>taille</th>
+        <th>type look</th>
+        <th>benefice</th>
+    </tr>
+    <tr th:each="benef : ${benefices}">
+        <td th:text="${benef.type}"></td>
+        <td th:text="${benef.taille}"></td>
+        <td th:text="${benef.look}"></td>
+        <td th:text="${benef.benefice}"></td>
+    </tr>
+</table>
+    </p>
+</body>
+</html>

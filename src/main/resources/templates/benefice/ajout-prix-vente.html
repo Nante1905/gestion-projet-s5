@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJOUT PRIX DE VENTE</title>
+  </head>
+  <body>
+    <form th:action="@{/gestion/ajout-prix-vente}" method="post">
+      <p>Ajouter prix de vente</p>
+      <p>
+        Type:
+        <select name="idType">
+          <option
+            value=""
+            th:each="type : ${types}"
+            th:text="${type.nom}"
+            th:value="${type.id}"
+          ></option>
+        </select>
+      </p>
+      <p>
+        Taille:
+        <select name="idTaille">
+          <option
+            th:each="taille : ${tailles}"
+            th:text="${taille.ref}"
+            th:value="${taille.id}"
+          ></option>
+        </select>
+      </p>
+      <p>
+        look:
+        <select name="idLook">
+          <option
+            th:each="look : ${looks}"
+            th:text="${look.nom}"
+            th:value="${look.id}"
+          ></option>
+        </select>
+      </p>
+      <p>
+        Prix de vente:
+        <input type="number" name="prix" />
+      </p>
+      <p><input type="submit" value="Ajouter" /></p>
+    </form>
+  </body>
+</html>

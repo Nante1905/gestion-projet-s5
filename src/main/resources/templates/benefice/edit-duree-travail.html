@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h>Modification duree de travail</h>
+    <form th:action="@{/gestion/edit-duree-travail}" method="post">
+      <p>
+        look:
+        <select name="idLook">
+          <option
+            value=""
+            th:each="look : ${looks}"
+            th:value="${look.id}"
+            th:text="${look.nom}"
+          ></option>
+        </select>
+      </p>
+      <p>
+        Duree en h:
+        <input type="text" name="duree" />
+      </p>
+      <p><input type="submit" value="Modifier" /></p>
+    </form>
+  </body>
+</html>
