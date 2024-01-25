@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nante.app.model.Client;
+import com.nante.app.model.Sac;
 import com.nante.app.model.views.VSacPrix;
 
 import jakarta.persistence.EntityManager;
@@ -41,5 +44,15 @@ public class SacController {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public String insertSac(Model model, @ModelAttribute Sac sac) throws Exception {
+        sac.insert(em);
+        return "redirect:/sacs/ajout";
+    }
+
+    public String insertClient(Model model, @ModelAttribute Client client) throws Exception {
+        client.insert(em);
+        return "redirect:/clients/ajout";
     }
 }
