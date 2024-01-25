@@ -234,3 +234,21 @@ create table categorie_emp(
     annee_exp int,
     coef_salaire int
 );
+
+create view v_emp_categorie as select e.id, c.annee_exp annee_categ
+from  employe e
+join categorie_emp c on c.annee_exp <= date_part('year', now()) - date_part('year',e.date_embauche)
+cross join v_last_taux_horaire vlth;
+
+create view v_emp_annee as select e.*, date_part('year', now()) - date_part('year',e.date_embauche) annee_exp from employe e
+
+select c.annee_exp, ve.id from v_emp_annee ve;
+
+create view v_emp_categ_max as select max(annee_categ) annee_categ, id emp_id from v_emp_categorie group by id
+
+
+create view v_emp_th_detail as select e.*, c.nom poste, c.coef_salaire*th.taux taux from v_emp_categ_max v
+join employe e on v.emp_id = e.id
+join categorie_emp c on c.annee_exp = v.annee_categ
+cross join v_last_taux_horaire th
+

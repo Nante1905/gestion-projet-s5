@@ -1,0 +1,33 @@
+
+
+    <h1>Liste des employes</h1>
+    <p>
+        <form th:action="@{/emp}" method="get">
+          
+        <p>
+            Taux horaire: min: <input type="number" name="min"> max: <input type="number" name="max">
+            <button class="btn btn-primary" type="submit" >Rechercher</button>
+        </p>
+        </form>
+    </p>
+    <p>
+        <table class="table table-striped">
+            <tr>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date embauche</th>
+                <th>Poste</th>
+                <th>taux horaire</th>
+            </tr>
+            <tr th:each="emp : ${emps}">
+                <td th:text="${emp.id}">id</td>
+                <td th:text="${emp.nom}">Nom</td>
+                <td th:text="${emp.prenom}">Prenom</td>
+                <td th:text="${emp.dateEmbauche}"></td>
+                <td th:text="${emp.poste}">Poste</td>
+                <td th:text="${emp.taux}">taux horaire</td>
+            </tr>
+            
+        </table>
+    </p>

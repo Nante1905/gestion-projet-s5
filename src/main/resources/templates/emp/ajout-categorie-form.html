@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajout categorie form</title>
+    <h1>Ajouter categorie</h1>
+  </head>
+  <body>
+    <form th:action="@{/categorie/insert}" method="post">
+      <p>nom: <input type="text" name="nom" /></p>
+      <p>Annee experience : <input type="number" name="anneeExp" /></p>
+      <p>Coefficient de salaire: <input type="number" name="coefSalaire" /></p>
+      <p><input type="submit" value="Ajouter" /></p>
+    </form>
+  </body>
+</html>

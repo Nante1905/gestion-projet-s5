@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajout emp form</title>
+    <h1>Ajouter employer</h1>
+  </head>
+  <body>
+    <form th:action="@{/emp/insert}" method="post">
+      <p>nom: <input type="text" name="nom" /></p>
+      <p>Prenom: <input type="text" name="prenom" /></p>
+      <p>date d embauche: <input type="date" name="dateEmbauche" /></p>
+      <p><input type="submit" value="Ajouter" /></p>
+    </form>
+  </body>
+</html>
