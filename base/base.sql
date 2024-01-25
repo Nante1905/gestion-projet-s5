@@ -252,3 +252,25 @@ join employe e on v.emp_id = e.id
 join categorie_emp c on c.annee_exp = v.annee_categ
 cross join v_last_taux_horaire th
 
+--25-01-24
+
+create table sac(
+    id serial PRIMARY KEY,
+    id_type int REFERENCES type(id),
+    id_taile int REFERENCES taille(id),
+    id_look int REFERENCES look(id),
+    nom VARCHAR(20)
+);
+
+create table client(
+    id serial PRIMARY KEY,
+    nom VARCHAR(20),
+    genre int
+);
+
+create table vente(
+    id_sac int REFERENCES sac(id),
+    id_client int REFERENCES client(id),
+    date_vente date,
+    nombre int
+);
